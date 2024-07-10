@@ -1,5 +1,5 @@
-from masks import get_mask_account
-from masks import get_mask_card_number
+from masks.py import get_mask_account
+from masks.py import get_mask_card_number
 
 
 def mask_account_card(account_card: str) -> str:
@@ -10,4 +10,7 @@ def mask_account_card(account_card: str) -> str:
         return get_mask_card_number(account_card)
 
 
-print(mask_account_card("Visa Platinum 7000792289606361"))
+def get_date(date: str) -> str:
+    """Изменение формата даты"""
+    new_format_data = date[8:10] + "." + date[5:7] + "." + date[:4]
+    return new_format_data
