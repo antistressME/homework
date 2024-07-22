@@ -16,7 +16,6 @@ def mask_account_card(account_card: str) -> str:
     return payment_system + get_mask_card_number(card_number_dig)
 
 
-
 def get_date(date: str) -> str:
     """Изменение формата даты"""
     new_format_data = date[8:10] + "." + date[5:7] + "." + date[:4]
