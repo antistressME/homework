@@ -1,6 +1,6 @@
 import pytest
 
-from src.widget import mask_account_card
+from src.widget import get_date, mask_account_card
 
 
 @pytest.mark.parametrize(
@@ -14,3 +14,7 @@ from src.widget import mask_account_card
 )
 def test_mask_account_card(number, mask):
     assert mask_account_card(number) == mask
+
+
+def test_get_date(date_to_formate):
+    assert get_date(date_to_formate) == "11.03.2024"
