@@ -1,5 +1,7 @@
 def get_mask_card_number(card_number: str) -> str:
     """Функция маскировки номера банковской карты"""
+    if 0 < len(card_number) <= 10:
+        return "Введите номер карты полностью"
     stars_points = len(card_number) - 10
     mask_card_number = card_number[:6] + "*" * stars_points + card_number[-4:]
     count = 0
