@@ -1,16 +1,21 @@
 def get_mask_card_number(card_number: str) -> str:
     """Функция маскировки номера банковской карты"""
-    card_number_dig = ""
-    payment_system = ""
-    for item in card_number:
-        if item.isdigit():
-            card_number_dig += item
-        else:
-            payment_system += item
-    mask_card_number = card_number_dig[0:4] + " " + card_number_dig[4:6] + "** **** " + card_number_dig[-4:]
-    return payment_system + mask_card_number
+    if 0 < len(card_number) <= 10:
+        return "Введите номер карты полностью"
+    stars_points = len(card_number) - 10
+    mask_card_number = card_number[:6] + "*" * stars_points + card_number[-4:]
+    count = 0
+    mask_card = ""
+    for digit in mask_card_number:
+        if count != 0 and count % 4 == 0:
+            mask_card += " "
+        count += 1
+        mask_card += digit
+    return mask_card
 
 
 def get_mask_account(account_number: str) -> str:
     """Функция получения маски номера счёта"""
-    return account_number[0:5] + "**" + account_number[-4:]
+    if len(account_number) == 0:
+        return ""
+    return "**" + account_number[-4:]
