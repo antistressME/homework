@@ -21,6 +21,7 @@ def test_get_mask_account():
     assert get_mask_account("0123456789012345678") == "**5678"
     assert get_mask_account("01234567") == "**4567"
 
+
 def test_error_get_mask_account():
     with pytest.raises(TypeError):
         get_mask_account(12341234123412341234)
