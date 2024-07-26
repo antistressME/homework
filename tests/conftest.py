@@ -54,7 +54,7 @@ def date_to_formate():
 
 @pytest.fixture()
 def transactions():
-    return [
+    yield [
         {
             "id": 939719570,
             "state": "EXECUTED",
@@ -170,3 +170,7 @@ def descriptions():
         "Перевод организации",
     ]
 
+
+@pytest.fixture
+def card_number():
+    return ["0000 0000 0000 0001", "0000 0000 0000 0002", "0000 0000 0000 0003", "0000 0000 0000 0004"]
