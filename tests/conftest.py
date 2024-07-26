@@ -135,6 +135,7 @@ def transactions_by_usd():
         },
     ]
 
+
 @pytest.fixture()
 def transactions_by_rub():
     return [
@@ -157,3 +158,15 @@ def transactions_by_rub():
             "to": "Счет 14211924144426031657",
         },
     ]
+
+
+@pytest.fixture
+def descriptions():
+    return [
+        "Перевод организации",
+        "Перевод со счета на счет",
+        "Перевод со счета на счет",
+        "Перевод с карты на карту",
+        "Перевод организации",
+    ]
+
