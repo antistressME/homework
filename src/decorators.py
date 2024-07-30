@@ -2,6 +2,8 @@ from functools import wraps
 
 
 def log(filename="print"):
+    """Декоратор логирует работу функции"""
+
     def wrapper(func):
 
         @wraps(func)
@@ -24,8 +26,6 @@ def log(filename="print"):
 
 
 @log()
-def my_function(x: int, y: int) -> int:
+def my_function(x, y):
+    """Функция складывает два элемента"""
     return x + y
-
-
-my_function(1, 2)

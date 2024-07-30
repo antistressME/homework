@@ -12,6 +12,18 @@ def test_log(capsys):
     assert captured.out == "my_func ok\n"
 
 
+def test_log_text(capsys):
+    my_func("1", "2")
+    captured = capsys.readouterr()
+    assert captured.out == "my_func ok\n"
+
+
+def test_log_list(capsys):
+    my_func([1], [1, 2])
+    captured = capsys.readouterr()
+    assert captured.out == "my_func ok\n"
+
+
 def test_log_type_error(capsys):
     my_func(1, "2")
     captured = capsys.readouterr()
