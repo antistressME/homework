@@ -21,6 +21,3 @@ def currency_conversion(amount: float, currency: str) -> float:
         error_message = f"An error {status_code} occurred. Please try again later."
         print(error_message)
 
-
-# if __name__ == "__main__":
-#     print(currency_conversion(100.00, "EUR"))

@@ -7,7 +7,8 @@ from src.external_api import currency_conversion
 def get_list(file_json: str) -> list[dict]:
     """Преобразуем json файл в список словарей"""
     transact_list = []
-    way_to_file = os.getcwd()[:-3] + r"data/" + file_json
+    path = os.path.dirname(__file__)[:-4]
+    way_to_file = os.path.join(path, "data", file_json)
     with open(way_to_file, "r", encoding="UTF8") as file:
         transaction = json.load(file)
         if type(transaction) == list:
@@ -21,11 +22,4 @@ def get_amount(operation: dict) -> float:
     currency = operation["operationAmount"]["currency"]["code"]
     if currency != "RUB":
         amount = currency_conversion(amount, currency)
-    return amount
-
-
-# if __name__ == "__main__":
-#     transact_list = get_list("operations.json")
-#     for item in transact_list[0:5]:
-#         total = get_amount(item)
-#         print(total)
+    return float(amount)
