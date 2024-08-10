@@ -33,8 +33,11 @@ def get_list(file_json: str) -> list[dict]:
 
 def get_amount(operation: dict) -> float:
     """Рассчитываем сумму транзакции в рублях"""
+    logger.info('Получили информацию о транзакции')
     amount = operation["operationAmount"]["amount"]
     currency = operation["operationAmount"]["currency"]["code"]
     if currency != "RUB":
+        logger.info(f'Переводим {currency} в рубли')
         amount = currency_conversion(amount, currency)
+    logger.info(f'Сумма в рублях: {amount}')
     return float(amount)
