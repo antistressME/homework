@@ -15,8 +15,14 @@ def currency_conversion(amount: float, currency: str) -> float:
     status_code = response.status_code
     if status_code == 200:
         content = json.loads(response.text)
+        print(content)
         amount_rub = round(content["result"], 2)
         return amount_rub
     else:
         error_message = f"An error {status_code} occurred. Please try again later."
         print(error_message)
+
+
+if __name__ == "__main__":
+    result = currency_conversion(123.23, "USD")
+    print(result)
