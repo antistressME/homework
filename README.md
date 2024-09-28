@@ -20,10 +20,14 @@ name = "antipina-anastasia"
 version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
-readme = "README.md"
+readme = "README.md" 
 
 [tool.poetry.dependencies]
 python = "^3.12"
+requests = "^2.32.3"
+python-dotenv = "^1.0.1"
+pandas = "^2.2.2"
+openpyxl = "^3.1.5"
 
 
 [tool.poetry.group.lint.dependencies]
