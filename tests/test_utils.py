@@ -9,7 +9,7 @@ def test_get_list(transact_list_0):
     assert operation == transact_list_0
 
 
-def test_get_list(transact_list_1):
+def test_get_list_1(transact_list_1):
     transact_list = get_list("operations.json")
     operation = transact_list[1]
     assert operation == transact_list_1
