@@ -5,8 +5,7 @@ import pandas as pd
 
 def get_data_by_csv(path_to_file: str) -> None:
     """Получение информации об операциях из csv файла"""
-    path = os.path.abspath(path_to_file)
-    csv_data = pd.read_csv(path, delimiter=";")
+    csv_data = pd.read_csv(path_to_file, delimiter=";")
     csv_dict = csv_data.to_dict("index")
     csv_list = []
     for value in csv_dict.values():
@@ -22,8 +21,7 @@ if __name__ == "__main__":
 
 def get_data_by_excel(path_to_file: str) -> None:
     """Получение информации об операциях из excel файла"""
-    path = os.path.abspath(path_to_file)
-    xlsx_data = pd.read_excel(path)
+    xlsx_data = pd.read_excel(path_to_file)
     xlsx_dict = xlsx_data.to_dict("index")
     xlsx_list = []
     for value in xlsx_dict.values():
