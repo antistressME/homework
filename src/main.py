@@ -1,3 +1,5 @@
+import re
+
 from filters import filter_by_str
 from generators import filter_by_currency, transaction_descriptions
 from processing import filter_by_state, sort_by_date
@@ -54,8 +56,10 @@ def main_func():
     print("Выводить только рублевые тразакции? Да/Нет")
     rubles_transactions = str(input()).lower()
     if rubles_transactions == "да":
-        transactions_rub = filter_by_currency(sorted_transactions, "rub")
-        transactions = transactions_rub
+        transactions = []
+        for item in sorted_transactions:
+            if re.search("RUB", str(item)):
+                transactions.append(item)
     else:
         transactions = sorted_transactions
     print(
@@ -67,21 +71,23 @@ def main_func():
         print("Введите слово")
         word = str(input())
         transactions = filter_by_str(transactions, word)
-    print("Распечатываю итоговый список транзакций...")
-    print(transactions)
     if len(transactions) == 0:
         print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
-    print(f"Всего банковских операций в выборке: {len(transactions)}")
-    for transaction in transactions:
-        operation_data = get_date(transaction["date"])
-        transaction_from = mask_account_card(transaction["from"])
-        transaction_to = mask_account_card(transaction["to"])
-        description = str(transaction_descriptions(transaction))
-        print(
-            f"""{operation_data} {str(description)}
-        {transaction_from} -> {transaction_to}
-        Сумма: {transaction["operationAmount"]["amount"]} {transaction["operationAmount"]["currency"]["name"]}"""
-        )
+    else:
+        print("Распечатываю итоговый список транзакций...")
+        print(f"Всего банковских операций в выборке: {len(transactions)}")
+        for transaction in transactions:
+            operation_data = get_date(transaction["date"])
+            transaction_from = mask_account_card(str(transaction["from"]))
+            transaction_to = mask_account_card(transaction["to"])
+            description = transaction["description"]
+            if user_chois == 1:
+                amount = transaction["operationAmount"]["amount"]
+                currency = transaction["operationAmount"]["currency"]["name"]
+            else:
+                amount = transaction["amount"]
+                currency = transaction["currency_code"]
+            print(f"{operation_data} {str(description)}\n{transaction_from} -> {transaction_to}\nСумма: {amount} {currency}")
 
 
 if __name__ == "__main__":

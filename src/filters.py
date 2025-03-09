@@ -20,13 +20,18 @@ if __name__ == "__main__":
     print(filter_by_str(operations, search_str))
 
 
-def filter_by_description(operations: list[dict], description: list) -> dict:
+def filter_by_description(operations: list[dict], description_list: list) -> dict:
     """Получение соваря категорий и количества операций в каждой категории."""
     result = defaultdict(int)
-    for item in description:
-        result[item]
-        counted = Counter(re.findall(item, str(operations)))
-        result.update(counted)
+    descriptions = []
+    for operation in operations:
+        try:
+            descriptions.append(operation['description'])
+        except KeyError:
+            continue
+    count = Counter(descriptions)
+    for item in description_list:
+        result[item] = count[item]
     return result
 
 

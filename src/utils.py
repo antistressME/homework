@@ -6,7 +6,7 @@ from src.external_api import currency_conversion
 
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s %(name): %(levelname)s: %(message)s",
+    format="%(asctime)s %(name)s: %(levelname)s: %(message)s",
     filename="logs/utils.log",
     filemode="w",
 )
