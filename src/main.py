@@ -78,7 +78,6 @@ def main_func():
         print(f"Всего банковских операций в выборке: {len(transactions)}")
         for transaction in transactions:
             operation_data = get_date(transaction["date"])
-            transaction_from = mask_account_card(str(transaction["from"]))
             transaction_to = mask_account_card(transaction["to"])
             description = transaction["description"]
             if user_chois == 1:
@@ -87,7 +86,13 @@ def main_func():
             else:
                 amount = transaction["amount"]
                 currency = transaction["currency_code"]
-            print(f"{operation_data} {str(description)}\n{transaction_from} -> {transaction_to}\nСумма: {amount} {currency}")
+            if transaction.get("from"):
+                transaction_from = mask_account_card(str(transaction["from"]))
+            else:
+                transaction_from = ""
+            print(
+                f"{operation_data} {str(description)}\n{transaction_from} -> {transaction_to}\nСумма: {amount} {currency}"
+            )
 
 
 if __name__ == "__main__":

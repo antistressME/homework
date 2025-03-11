@@ -1,12 +1,12 @@
 import re
+from collections import Counter, defaultdict
 
 from src.utils import get_list
-from collections import Counter
-from collections import defaultdict
+
 
 def filter_by_str(operations: list[dict], search_str: str) -> list:
     """Получение списка словарей, у которых в описании указанная строка."""
-    pattern = r'description\W\W\s\W' + search_str
+    pattern = r"description\W\W\s\W" + search_str
     filtered_operations = []
     for operation in operations:
         if re.search(pattern, str(operation)):
@@ -26,7 +26,7 @@ def filter_by_description(operations: list[dict], description_list: list) -> dic
     descriptions = []
     for operation in operations:
         try:
-            descriptions.append(operation['description'])
+            descriptions.append(operation["description"])
         except KeyError:
             continue
     count = Counter(descriptions)
