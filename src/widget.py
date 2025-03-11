@@ -1,3 +1,5 @@
+import datetime
+
 from src.masks import get_mask_account, get_mask_card_number
 
 
@@ -18,5 +20,6 @@ def mask_account_card(account_card: str) -> str:
 
 def get_date(date: str) -> str:
     """Изменение формата даты"""
-    new_format_data = date[8:10] + "." + date[5:7] + "." + date[:4]
+    format_data = datetime.datetime.fromisoformat(date)
+    new_format_data = format_data.strftime("%d.%m.%Y")
     return new_format_data
